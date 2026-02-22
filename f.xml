@@ -1,0 +1,81 @@
+<View>
+  <View style="box-shadow: 2px 2px 8px #ccc; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+    <Header value="Tweet Content"/>
+    <Text name="user_display" value="@$screen_name" fontStyle="italic" />
+    <Hypertext name="tweet_body" value="$full_text" />
+	<Hypertext name="link" value="$link"/>
+  </View>
+
+  <View style="padding: 0 20px;">
+    <Header value="1. Was the tweet political?" size="5"/>
+    <Choices name="is_political" toName="tweet_body" showInLine="true" required="true">
+      <Choice value="Yes"/><Choice value="No"/>
+    </Choices>
+
+    <Header value="2. Was the tweet news or by news media?" size="5"/>
+    <Choices name="is_news" toName="tweet_body" showInLine="true" required="true">
+      <Choice value="Yes"/><Choice value="No"/>
+    </Choices>
+	<View visibleWhen="choice-selected" whenTagName="is_political" whenChoiceValue="Yes">
+      <Header value="3. Overall Sentiment" size="5"/>
+      <Choices name="overall_sentiment" toName="tweet_body" showInLine="true">
+        <Choice value="Positive"/><Choice value="Negative"/><Choice value="Neutral"/>
+      </Choices>
+
+      <Header value="4. Was it sarcastic?" size="5"/>
+      <Choices name="sarcasm_check" toName="tweet_body" showInLine="true">
+        <Choice value="Yes"/><Choice value="No"/>
+      </Choices>
+      <Header value="5. Select the Political parties involved" size="5"/>
+      <Choices name="party_list" toName="tweet_body" choice="multiple" showInLine="true">
+        <Choice value="DMK"/><Choice value="ADMK"/><Choice value="TVK"/>
+        <Choice value="NTK"/><Choice value="BJP"/><Choice value="Congress"/>
+      </Choices>
+
+      <Header value="6. Stance per selected Party" size="5"/>
+
+      <View visibleWhen="choice-selected" whenTagName="party_list" whenChoiceValue="DMK">
+        <Header value="Stance: DMK" size="6" style="color: #555; margin-top: 10px;"/>
+        <Choices name="stance_dmk" toName="tweet_body" showInLine="true">
+          <Choice value="Pro-party"/><Choice value="Anti-party"/><Choice value="Neutral"/>
+        </Choices>
+      </View>
+
+      <View visibleWhen="choice-selected" whenTagName="party_list" whenChoiceValue="ADMK">
+        <Header value="Stance: ADMK" size="6" style="color: #555; margin-top: 10px;"/>
+        <Choices name="stance_admk" toName="tweet_body" showInLine="true">
+          <Choice value="Pro-party"/><Choice value="Anti-party"/><Choice value="Neutral"/>
+        </Choices>
+      </View>
+
+      <View visibleWhen="choice-selected" whenTagName="party_list" whenChoiceValue="TVK">
+        <Header value="Stance: TVK" size="6" style="color: #555; margin-top: 10px;"/>
+        <Choices name="stance_tvk" toName="tweet_body" showInLine="true">
+          <Choice value="Pro-party"/><Choice value="Anti-party"/><Choice value="Neutral"/>
+        </Choices>
+      </View>
+
+      <View visibleWhen="choice-selected" whenTagName="party_list" whenChoiceValue="NTK">
+        <Header value="Stance: NTK" size="6" style="color: #555; margin-top: 10px;"/>
+        <Choices name="stance_ntk" toName="tweet_body" showInLine="true">
+          <Choice value="Pro-party"/><Choice value="Anti-party"/><Choice value="Neutral"/>
+        </Choices>
+      </View>
+
+      <View visibleWhen="choice-selected" whenTagName="party_list" whenChoiceValue="BJP">
+        <Header value="Stance: BJP" size="6" style="color: #555; margin-top: 10px;"/>
+        <Choices name="stance_bjp" toName="tweet_body" showInLine="true">
+          <Choice value="Pro-party"/><Choice value="Anti-party"/><Choice value="Neutral"/>
+        </Choices>
+      </View>
+
+      <View visibleWhen="choice-selected" whenTagName="party_list" whenChoiceValue="Congress">
+        <Header value="Stance: Congress" size="6" style="color: #555; margin-top: 10px;"/>
+        <Choices name="stance_congress" toName="tweet_body" showInLine="true">
+          <Choice value="Pro-party"/><Choice value="Anti-party"/><Choice value="Neutral"/>
+        </Choices>
+      </View>
+    </View>
+
+  </View>
+</View>
