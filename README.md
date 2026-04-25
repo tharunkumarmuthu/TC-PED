@@ -253,44 +253,6 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Running Inference
-
-```python
-from transformers import AutoTokenizer, AutoModel
-import torch
-
-# Load model
-model = torch.load('checkpoints/tc_ped_model_epoch5.pt')
-tokenizer = AutoTokenizer.from_pretrained('ai4bharat/IndicBERTv2-MLM-GU')
-
-# Prepare input
-tweet = "DMK தமிழாகத் தேவை"
-party = "DMK"
-input_text = f"[CLS] {tweet} [SEP] {party} [SEP]"
-
-# Inference
-inputs = tokenizer(input_text, return_tensors='pt', max_length=128, 
-                  truncation=True, padding=True)
-with torch.no_grad():
-    outputs = model(**inputs)
-    probability = torch.sigmoid(outputs).item()
-    
-print(f"Party '{party}' mentioned: {probability:.2%} confidence")
-```
-
-### Training from Scratch
-
-```bash
-# Preprocess data
-python Preprocessing/preprocess_for_model.ipynb
-
-# Train model
-python train.py --epochs 30 --batch_size 4 --learning_rate 2e-5
-
-# Evaluate
-python evaluate.py --model_path checkpoints/best_model.pt
-```
-
 ---
 
 ## Repository Structure
@@ -410,6 +372,6 @@ This project is submitted as partial fulfillment for the degree of Bachelor of S
 
 ---
 
-**Questions?** Feel free to open an issue or reach out through the contact info in your professional profile.
+**Questions?** Feel free to open an issue or reach out through the contact info in the professional profile.
 
 *Last Updated: April 2026*
