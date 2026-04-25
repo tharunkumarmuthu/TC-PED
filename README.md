@@ -145,7 +145,7 @@ The **[CLS] token** acts as a "relational bridge" capturing semantic relationshi
 *Mentions across 6 major Tamil Nadu political parties*
 
 ![Political Tweet Box Plot](EDA/box_plot_tweet_length.png)
-*Length distribution of political vs. non-political tweets*
+*Length distribution of tweets*
 
 </div>
 
