@@ -7,6 +7,7 @@
 ![IndicBERT](https://img.shields.io/badge/Model-IndicBERT--v2-orange?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19781488-blue?style=flat-square) 
 
 ---
 
