@@ -6,7 +6,7 @@
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red?style=flat-square&logo=pytorch)
 ![IndicBERT](https://img.shields.io/badge/Model-IndicBERT--v2-orange?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)
-![License](https://img.shields.io/badge/License-Educational-lightgrey?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ---
 
@@ -415,7 +415,7 @@ Key works that inspired this project:
 
 ## 📝 License
 
-This project is submitted as partial fulfillment for the degree of Bachelor of Science in Statistics at St. Joseph's College (Autonomous), 2026.
+This repository is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
 
