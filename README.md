@@ -18,6 +18,7 @@
 - [Project Flow & Data](#project-flow--data)
 - [Technical Architecture](#technical-architecture)
 - [Quick Start](#quick-start)
+- [Model Inference](#model-inference)
 - [Repository Structure](#repository-structure)
 - [Team & Credits](#team--credits)
 
@@ -253,6 +254,44 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+### Model Inference
+
+Download the trained model weights from Google Drive before running inference.
+
+#### Download Model Weights
+
+- Google Drive: https://drive.google.com/file/d/1l22-HEmH6tRWWl6REeIzgQ2NGtQ7CEjN/view?usp=drive_link
+
+After downloading, place the file in the project root or provide its path when running the script.
+
+#### Usage
+
+```bash
+# Run inference with the downloaded model file
+python infer.py /path/to/best_model.pth
+```
+
+#### Interactive Mode
+
+The script enters an interactive mode where you can:
+
+1. **Enter tweet text**: Input any Tamil or English tweet
+2. **Enter party name**: Specify one of the 6 supported parties (ADMK, BJP, Congress, DMK, NTK, TVK)
+3. **Get prediction**: Receive binary classification result (MENTIONED/NOT MENTIONED) with confidence score
+
+
+#### Supported Parties
+- ADMK (All India Anna Dravida Munnetra Kazhagam)
+- BJP (Bharatiya Janata Party)
+- Congress (Indian National Congress)
+- DMK (Dravida Munnetra Kazhagam)
+- NTK (Naam Tamilar Katchi)
+- TVK (Thamizhaga Vetri Kazhagam)
+
+#### Exit Commands
+- Type `quit` for either tweet or party input
+- Press `Ctrl+C` to interrupt
+
 ---
 
 ## Repository Structure
@@ -260,6 +299,8 @@ pip install -r requirements.txt
 ```
 TC-PED/
 ├── 📄 README.md (this file)
+├── 📄 Project_submitted_to_Instituition.pdf    # Project submission document
+├── 📄 Technical_Report.pdf                    # Technical report
 │
 ├── 📁 data/
 │   ├── tweet_is_political_2026-02-15.csv          # Political vs non-political labels
@@ -267,33 +308,33 @@ TC-PED/
 │   └── tweet_party_stance_onehot_2026-02-15.csv   # Stance labels (one-hot)
 │
 ├── 📁 Preprocessing/
-│   ├── preprocess_for_labelling.ipynb    # Data cleaning for annotation
-│   ├── preprocess_for_model.ipynb        # Binary relevance transformation
-│   ├── labeled_tweet.csv                 # Post-annotation dataset
-│   └── merged_tweets.csv                 # Combined raw data
-│
-├── 📁 Scraping/
-│   ├── scrape.py                         # Twitter data collection script
-│   └── tn_political_data_full*.csv       # Raw scraped datasets
+│   ├── preprocess_for_labelling.ipynb            # Data cleaning for annotation
+│   ├── preprocess_for_model.ipynb                # Binary relevance transformation
+│   ├── project-1-at-2026-01-27-05-06-e12e4e5a.csv # Label Studio project export
+│   └── tweet_for labelling.csv                   # Tweets prepared for labeling
 │
 ├── 📁 EDA/
-│   ├── Diagrams.ipynb                    # Exploratory visualizations
-│   ├── tweet_by_date.png                 # Temporal patterns
-│   ├── tweet_by_hour.png                 # Hourly engagement
-│   ├── party_tweet.png                   # Party distribution
-│   └── box_plot_tweet_length.png         # Length analysis
+│   ├── Diagrams.ipynb                            # Exploratory visualizations
+│   ├── tweet_by_date.png                         # Temporal patterns
+│   ├── tweet_by_hour.png                         # Hourly engagement
+│   ├── tweet_by_length.png                       # Tweet length distribution
+│   ├── party_tweet.png                           # Party distribution
+│   ├── political_tweet.png                       # Political tweet analysis
+│   └── box_plot_tweet_length.png                 # Length analysis box plot
 │
 ├── 📁 diagrams/
-│   ├── Figure1.png                       # Preprocessing Pipeline
-│   ├── Figure2.png                       # Model Architecture
-│   └── Figure3.png                       # Confusion Matrix (Results)
+│   ├── Figure1.png                               # Preprocessing Pipeline
+│   ├── Figure2.png                               # Model Architecture
+│   └── Figure3.png                               # Confusion Matrix (Results)
 │
 ├── 🎓 TC_PED__Target_Conditioned_Party_Entity_Detection.ipynb
 │   └── Main project notebook (EDA + Model training)
 │
-├── 📋 labelling.xml                      # Label Studio export
+├── 🤖 infer.py                                   # CLI inference script for party mention detection
 │
-└── 📋 requirements.txt                   # Python dependencies
+├── 📋 labelling.xml                              # Label Studio export
+│
+└── 📋 requirements.txt                           # Python dependencies
 ```
 
 ---
@@ -343,10 +384,16 @@ TC-PED/
 
 Key works that inspired this project:
 
-- Devlin et al. (2019). BERT: Pre-training of Deep Bidirectional Transformers
-- AI4Bharat (2020). IndicBERT: Indic Languages as First-Class Citizens
-- Lample et al. (2016). Neural Architectures for Named Entity Recognition  
-- Liu & Cui (2023). Data Augmentation for Low-Resource NER
+- Derczynski, L., Nichols, E., Erp, M. V., & Limsopatham, N. (2017). Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition. *NUT@EMNLP*. https://doi.org/10.18653/V1/W17-4418
+- Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019). BERT: Pretraining of Deep Bidirectional Transformers for Language Understanding. *North American Chapter of the Association for Computational Linguistics*. https://doi.org/10.18653/V1/N19-1423
+- Khatavkar, V., Petkar, S., & Vaidya, A. S. (2025). Multilingual Transformer Contextual Embedding Model for Political Tweets Analysis. *Cureus Journal of Computer Science*. https://doi.org/10.7759/s44389-025-03177-4
+- Kumanan, S. P., et al. [AI4Bharat] (2020). IndicNLPSuite: Monolingual Corpora, Evaluation Benchmarks and Pre-trained Multilingual Language Models for Indian Languages. *Findings of the Association for Computational Linguistics: EMNLP 2020*. https://doi.org/10.18653/v1/2020.findings-emnlp.445
+- Lample, G., Ballesteros, M., Subramanian, S., Kawakami, K., & Dyer, C. (2016). Neural Architectures for Named Entity Recognition. *North American Chapter of the Association for Computational Linguistics*. https://doi.org/10.18653/V1/N16-1030
+- Li, J., Sun, A., Han, J., & Li, C. (2020). A Survey on Deep Learning for Named Entity Recognition. *IEEE Transactions on Knowledge and Data Engineering*. https://doi.org/10.1109/TKDE.2020.2981314
+- Liu, W., & Cui, X. (2023). Improving Named Entity Recognition for Social Media with Data Augmentation. *Applied Sciences*. https://doi.org/10.3390/APP13095360
+- Moon, S., Neves, L., & Carvalho, V. (2018). Multimodal Named Entity Recognition for Short Social Media Posts. *North American Chapter of the Association for Computational Linguistics*. https://doi.org/10.18653/V1/N18-1078
+- Nie, Y., Tian, Y., Wan, X., Song, Y., & Dai, B. (2020). Named Entity Recognition for Social Media Texts with Semantic Augmentation. *Conference on Empirical Methods in Natural Language Processing*. https://doi.org/10.18653/V1/2020.EMNLP-MAIN.107
+- Suriya, K. P., et al. [Synapse] (2025). Synapse@DravidianLangTech 2025: Multiclass Political Sentiment Analysis in Tamil X (Twitter) Comments: Leveraging Feature Fusion of IndicBERTv2 and Lexical Representations. *Proceedings of the Fifth Workshop on Speech, Vision, and Language Technologies for Dravidian Languages (NAACL 2025)*. https://doi.org/10.18653/v1/2025.dravidianlangtech-1.122
 
 ---
 
